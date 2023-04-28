@@ -1,7 +1,7 @@
 const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const clouds = document.querySelector('.clouds');
-const text_over = document.querySelector('.text_over')
+const textOver = document.querySelector('.text-over')
 
 
 const jump = () => {
@@ -15,32 +15,31 @@ const jump = () => {
 let loop;
 let count = 0;
 
-function start_loop(){
+function startLoop(){
 const loop = setInterval(()=>{
-    const pipe_position = pipe.offsetLeft;
-    const mario_position = +window.getComputedStyle(mario).bottom.replace('px', '');
-    const clouds_position = clouds.offsetLeft;
+    const pipePosition = pipe.offsetLeft;
+    const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
+    const cloudsPosition = clouds.offsetLeft;
     
-    if(pipe_position <= 120 && mario_position < 85 && pipe_position > 0){
+    if(pipePosition <= 120 && marioPosition < 85 && pipePosition > 0){
         pipe.style.animation = 'none';
-        pipe.style.left = `${pipe_position}px`;
-        console.log(pipe_position);
+        pipe.style.left = `${pipePosition}px`;
 
         mario.style.animation = 'none';
-        mario.style.bottom = `${mario_position}px`;
+        mario.style.bottom = `${marioPosition}px`;
 
         mario.src = './Images/game_over.png';
         mario.style.width = '75px';
         mario.style.marginLeft = '50px';
 
         clouds.style.animation = 'none';
-        clouds.style.left = `${clouds_position}px`;
+        clouds.style.left = `${cloudsPosition}px`;
         
 
         clearInterval(loop)
 
         resetButton.style.display = 'block';
-        text_over.style.display = 'block';
+        textOver.style.display = 'block';
 
     }
 
@@ -52,14 +51,14 @@ const loop = setInterval(()=>{
 } ,10);
 }
 
-function reset_loop(){
+function resetLoop(){
     clearInterval(loop);
     count = 0;
     pipe.style.left = '';
-    pipe.style.animation = 'pipe_animation 2s infinite linear';
+    pipe.style.animation = 'pipe-animation 2s infinite linear';
 
     clouds.style.left = '';
-    clouds.style.animation = 'clouds_animation 10s infinite linear';
+    clouds.style.animation = 'clouds-animation 10s infinite linear';
 
     mario.src = './Images/mario_walking.gif';
     mario.style.width = '150px';
@@ -68,16 +67,15 @@ function reset_loop(){
     mario.style.animation = '';
 
     resetButton.style.display = 'none';
-    text_over.style.display = 'none';
+    textOver.style.display = 'none';
 
     
-    console.log('pass');
-    loop = start_loop()
+    loop = startLoop()
 }
 
-start_loop();
+startLoop();
 
 window.addEventListener('keydown', jump);
 
-const resetButton = document.getElementById('button_reset');
-resetButton.addEventListener('click', reset_loop);
+const resetButton = document.getElementById('button-reset');
+resetButton.addEventListener('click', resetLoop);
