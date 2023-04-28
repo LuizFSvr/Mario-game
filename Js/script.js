@@ -1,6 +1,7 @@
 const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const clouds = document.querySelector('.clouds');
+const text_over = document.querySelector('.text_over')
 
 
 const jump = () => {
@@ -37,6 +38,10 @@ const loop = setInterval(()=>{
         
 
         clearInterval(loop)
+
+        resetButton.style.display = 'block';
+        text_over.style.display = 'block';
+
     }
 
     else {
@@ -62,6 +67,8 @@ function reset_loop(){
     mario.style.marginLeft = '0px';
     mario.style.animation = '';
 
+    resetButton.style.display = 'none';
+    text_over.style.display = 'none';
 
     
     console.log('pass');
