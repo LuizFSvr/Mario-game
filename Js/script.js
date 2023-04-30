@@ -4,6 +4,8 @@ const clouds = document.querySelector('.clouds');
 const textOver = document.querySelector('.text-over')
 const floor = document.querySelector('.floor');
 
+let loop;
+let count = 0;
 
 const jump = () => {
     mario.classList.add('jump');
@@ -13,51 +15,45 @@ const jump = () => {
     }, 500);
 }
 
-let loop;
-let count = 0;
+const startLoop = () => {
+    loop = setInterval(() => {
+        const pipePosition = pipe.offsetLeft;
+        const marioPosition = parseInt(window.getComputedStyle(mario).bottom);
+        const cloudsPosition = clouds.offsetLeft;
+        const floorPosition = floor.offsetLeft;
 
-function startLoop(){
-const loop = setInterval(()=>{
-    const pipePosition = pipe.offsetLeft;
-    const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
-    const cloudsPosition = clouds.offsetLeft;
-    const floorPosition = floor.offsetLeft;
+        if(pipePosition <= 120 && marioPosition < 85 && pipePosition > 0) {
+            pipe.style.animation = 'none';
+            pipe.style.left = `${pipePosition}px`;
 
-    if(pipePosition <= 120 && marioPosition < 85 && pipePosition > 0){
-        pipe.style.animation = 'none';
-        pipe.style.left = `${pipePosition}px`;
+            mario.style.animation = 'none';
+            mario.style.bottom = `${marioPosition}px`;
 
-        mario.style.animation = 'none';
-        mario.style.bottom = `${marioPosition}px`;
+            mario.src = './Images/game_over.png';
+            mario.style.width = '75px';
+            mario.style.marginLeft = '50px';
 
-        mario.src = './Images/game_over.png';
-        mario.style.width = '75px';
-        mario.style.marginLeft = '50px';
+            clouds.style.animation = 'none';
+            clouds.style.left = `${cloudsPosition}px`;
+            
+            floor.style.animation = 'none';
+            floor.style.left = `${floorPosition}`
 
-        clouds.style.animation = 'none';
-        clouds.style.left = `${cloudsPosition}px`;
-        
-        floor.style.animation = 'none';
-        floor.style.left = `${floorPosition}`
+            clearInterval(loop)
 
-        clearInterval(loop)
-
-        resetButton.style.display = 'block';
-        textOver.style.display = 'block';
-
-    }
-
-    else {
-        count++;
-        document.getElementById("pontuation").textContent ="Score: " + Math.floor(count / 5);
-    };
-    
-} ,10);
+            resetButton.style.display = 'block';
+            textOver.style.display = 'block';
+    }   else {
+            count++;
+            document.getElementById("pontuation").textContent =`Score: ${Math.floor(count / 5)}`;
+        };
+    } ,10);
 }
 
-function resetLoop(){
+const resetLoop = () => {
     clearInterval(loop);
     count = 0;
+
     pipe.style.left = '';
     pipe.style.animation = 'pipe-animation 2s infinite linear';
 
@@ -76,9 +72,7 @@ function resetLoop(){
     resetButton.style.display = 'none';
     textOver.style.display = 'none';
 
-    
-    
-    loop = startLoop()
+    startLoop()
 }
 
 startLoop();
