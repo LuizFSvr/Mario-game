@@ -2,6 +2,7 @@ const mario = document.querySelector('.mario');
 const pipe = document.querySelector('.pipe');
 const clouds = document.querySelector('.clouds');
 const textOver = document.querySelector('.text-over')
+const floor = document.querySelector('.floor');
 
 
 const jump = () => {
@@ -20,7 +21,8 @@ const loop = setInterval(()=>{
     const pipePosition = pipe.offsetLeft;
     const marioPosition = +window.getComputedStyle(mario).bottom.replace('px', '');
     const cloudsPosition = clouds.offsetLeft;
-    
+    const floorPosition = floor.offsetLeft;
+
     if(pipePosition <= 120 && marioPosition < 85 && pipePosition > 0){
         pipe.style.animation = 'none';
         pipe.style.left = `${pipePosition}px`;
@@ -35,6 +37,8 @@ const loop = setInterval(()=>{
         clouds.style.animation = 'none';
         clouds.style.left = `${cloudsPosition}px`;
         
+        floor.style.animation = 'none';
+        floor.style.left = `${floorPosition}`
 
         clearInterval(loop)
 
@@ -66,9 +70,13 @@ function resetLoop(){
     mario.style.marginLeft = '0px';
     mario.style.animation = '';
 
+    floor.style.animation = 'floor-animation 5.5s linear infinite';
+    floor.style.left = '';
+
     resetButton.style.display = 'none';
     textOver.style.display = 'none';
 
+    
     
     loop = startLoop()
 }

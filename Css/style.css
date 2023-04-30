@@ -7,11 +7,10 @@
 .game-board {
     width: 100%;
     height: 500px;
-    border-bottom: 15px solid rgb(35,160,35);
-    background: linear-gradient(#87CEEB, #E0F6FF);
+    background: #87CEEB;
     margin: 0 auto;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .pipe {
@@ -41,7 +40,7 @@
     color: orange;
     position: absolute;
     right: 10px;
-
+    top: 0%;
 }
 
 #button-reset {
@@ -73,12 +72,22 @@
 
 .text-over {
     width: 250px;
-    left: 39.5%;
+    margin-left: 39.5%;
     position: absolute;
     animation: game-over-animation 4s linear;
     top: 40px;
 }
 
+.floor {
+    background-image: url(/Images/floor.png);
+    background-size: 50px 50px;
+    background-repeat: repeat-x  ;
+    height: 50px;
+    position: relative;
+    top: 100%;
+    animation: floor-animation 5.5s linear infinite;
+    width: 400vw;
+}
 
 
 
@@ -138,4 +147,11 @@
     to {
         top: 40px;
     }
+}
+
+@keyframes floor-animation {
+    from {
+        right: 100%;
+    }
+    to{right: 200%;}
 }
