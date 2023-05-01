@@ -79,7 +79,7 @@
 }
 
 .floor {
-    background-image: url(/Images/floor.png);
+    background-image: url(https://raw.githubusercontent.com/LuizFSvr/Mario-game/main/Images/floor.png);
     background-size: 50px 50px;
     background-repeat: repeat-x  ;
     height: 50px;
